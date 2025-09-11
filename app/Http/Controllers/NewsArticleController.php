@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\ElasticsearchService;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use App\Events\UserNotification;
 
 class NewsArticleController extends Controller
 {
@@ -62,7 +63,7 @@ class NewsArticleController extends Controller
             $es = new ElasticsearchService();
             $es->indexDocument(
                 index: 'news_articles',
-                id: (string) $newsArticle->id,
+                // id: (string) $newsArticle->id,
                 data: $newsArticle->toElasticsearchDocument()
             );
 
@@ -71,6 +72,8 @@ class NewsArticleController extends Controller
                 'status' => 'success',
                 'message' => 'News Saved successfully'
             ];
+
+            broadcast(new UserNotification('News Article Created', $request->user()->id))->toOthers();
 
             return response()->json(['data' => $data], 200);
 
