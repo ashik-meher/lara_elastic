@@ -30,11 +30,11 @@ class ElasticsearchService
     }
 
     // Method to index a document
-    public function indexDocument(string $index, string $id, array $data)
+    public function indexDocument(string $index, array $data)
     {
         $params = [
             'index' => $index,
-            'id'    => $id,
+            // 'id'    => $id,
             'body'  => $data,
         ];
 
@@ -44,19 +44,43 @@ class ElasticsearchService
     // Method to search
     public function search(string $index, string $query, int $size = 10)
     {
+        /**
+         * Fuzzy
+         */
         $params = [
             'index' => $index,
             'body'  => [
                 'query' => [
                     'multi_match' => [
                         'query' => $query,
-                        'fields' => ['title', 'body'],  // Boost title matches
-                        'fuzziness' => 'AUTO',
+                        'fields' => ['title^2', 'body'],  // Boost title matches
+                        'fuzziness' => '2',
+                        // 'type' => 'best_fields'
+                        // 'minimum_should_match' => '1',  // At least 1 term should match
+                        // 'operator' => 'OR'
                     ],
                 ],
                 'size' => $size,
             ],
         ];
+
+        /**
+         * Exact Wildcard
+         */
+
+        // $params = [
+        //     'index' => $index,
+        //     'body'  => [
+        //         'query' => [
+        //             'query_string' => [
+        //                 'query' => "*{$query}*",
+        //                 'fields' => ['title^2', 'body'],
+        //                 'default_operator' => 'OR',
+        //             ]
+        //         ],
+        //         'size' => $size
+        //     ]
+        // ];
 
         return $this->client->search($params);
     }

@@ -32,7 +32,7 @@ class IndexNewsArticles extends Command
         foreach ($newsArticles as $newsArticle) {
             $es->indexDocument(
                 index: 'news_articles',  // Name your index
-                id: (string) $newsArticle->id,
+                // id: (string) $newsArticle->id,
                 data: $newsArticle->toElasticsearchDocument()
             );
         }

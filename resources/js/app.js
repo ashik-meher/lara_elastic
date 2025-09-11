@@ -6,3 +6,6 @@ import './bootstrap';
 
 // Alpine.start();
 
+import $ from 'jquery';
+window.$ = window.jQuery = $;
+

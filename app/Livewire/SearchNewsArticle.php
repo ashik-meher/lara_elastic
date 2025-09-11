@@ -30,7 +30,10 @@ class SearchNewsArticle extends Component
                 $query = trim($this->searchTerm);
                 $result = $es->search('news_articles', $query, 10);
                 Log::info('Elasticsearch Search Response', ['query' => $query, 'result' => $result]);
-                $ids = array_column($result['hits']['hits'] ?? [], '_id');
+                //$ids = array_column($result['hits']['hits'] ?? [], '_id');
+                $ids = array_map(function ($hit) {
+                    return $hit['_source']['entity_id'];
+                }, $result['hits']['hits'] ?? []);
                 $newsArticles = NewsArticle::whereIn('id', $ids)->get();
                 $this->newsArticles = $newsArticles;
             } catch (Exception $ex) {

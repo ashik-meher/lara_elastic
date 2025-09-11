@@ -41,11 +41,51 @@ class NewsArticleController extends Controller
     {
         return view('news_article.index');
     }
+
+
+    public function store(Request $request)
+    {
+        try {
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'body' => 'required|string',
+            ]);
+
+            $newsArticle = NewsArticle::create([
+                'title' => $request->title,
+                'body' => $request->body,
+                'author_name' => 'Ashik',
+                //'published' => $request->has('published'),
+
+            ]);
+
+            $es = new ElasticsearchService();
+            $es->indexDocument(
+                index: 'news_articles',
+                id: (string) $newsArticle->id,
+                data: $newsArticle->toElasticsearchDocument()
+            );
+
+            $data = [
+                'news_article_model' => $newsArticle,
+                'status' => 'success',
+                'message' => 'News Saved successfully'
+            ];
+
+            return response()->json(['data' => $data], 200);
+
+            // return redirect()->back()->with('success', 'News article created successfully!');
+        } catch (Exception $ex) {
+            $errMsg =  $ex->getMessage();
+
+            return response()->json(['err' => $errMsg, 'status' => 'error'], 400);
+        }
+    }
 }
 
 
 /**
- * Sample resposne 
+ * Sample elastic resposne 
  */
 
 

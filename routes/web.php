@@ -24,4 +24,5 @@ require __DIR__ . '/auth.php';
  */
 
 Route::get('news-articles', [App\Http\Controllers\NewsArticleController::class, 'index'])->middleware('auth')->name('news-articles.index');
+Route::post('news-articles', [App\Http\Controllers\NewsArticleController::class, 'store'])->middleware('auth')->name('news-articles.store');
 Route::get('news-articles/search', [App\Http\Controllers\NewsArticleController::class, 'search'])->middleware('auth')->name('news-articles.search');
