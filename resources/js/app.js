@@ -1,4 +1,6 @@
 import './bootstrap';
+import $ from 'jquery';
+window.$ = window.jQuery = $;
 
 // import Alpine from 'alpinejs';
 
@@ -6,6 +8,5 @@ import './bootstrap';
 
 // Alpine.start();
 
-import $ from 'jquery';
-window.$ = window.jQuery = $;
+
 

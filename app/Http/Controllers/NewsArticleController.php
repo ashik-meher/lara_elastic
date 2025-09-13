@@ -60,12 +60,12 @@ class NewsArticleController extends Controller
 
             ]);
 
-            $es = new ElasticsearchService();
-            $es->indexDocument(
-                index: 'news_articles',
-                // id: (string) $newsArticle->id,
-                data: $newsArticle->toElasticsearchDocument()
-            );
+            // $es = new ElasticsearchService();
+            // $es->indexDocument(
+            //     index: 'news_articles',
+            //     // id: (string) $newsArticle->id,
+            //     data: $newsArticle->toElasticsearchDocument()
+            // );
 
             $data = [
                 'news_article_model' => $newsArticle,
@@ -73,7 +73,8 @@ class NewsArticleController extends Controller
                 'message' => 'News Saved successfully'
             ];
 
-            broadcast(new UserNotification('News Article Created', $request->user()->id))->toOthers();
+            broadcast(new UserNotification('News Article Created', $request->user()->id));
+            //->toOthers();
 
             return response()->json(['data' => $data], 200);
 

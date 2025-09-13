@@ -31,12 +31,13 @@ class UserNotification implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn(): Channel
     {
+        return new Channel('example-channel');
         // User-specific channel
-        return [
-            new PrivateChannel('App.Models.User.' . $this->userId),
-        ];
+        // return
+        //     new PrivateChannel('App.Models.User.' . $this->userId);
+
         // return [
         //     new PrivateChannel('channel-name'),
         // ];

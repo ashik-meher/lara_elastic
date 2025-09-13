@@ -230,10 +230,10 @@
                         <p class="text-sm font-medium">${message}</p>
                     </div>
                     ${type !== 'processing' ? `
-                                                                                            <button onclick="hideToast('${toastId}')" class="ml-2 text-gray-400 hover:text-gray-600">
-                                                                                                <i class="fa-solid fa-times text-sm"></i>
-                                                                                            </button>
-                                                                                            ` : ''}
+                                                                                                                                                                                                                                        <button onclick="hideToast('${toastId}')" class="ml-2 text-gray-400 hover:text-gray-600">
+                                                                                                                                                                                                                                            <i class="fa-solid fa-times text-sm"></i>
+                                                                                                                                                                                                                                        </button>
+                                                                                                                                                                                                                                        ` : ''}
                 </div>
             `;
 
@@ -495,10 +495,63 @@
         updateCharCount();
     </script>
 
-    <script type="module">
+    <script>
         $(document).ready(function(e) {
-            console.log('doc ready');
 
+            window.Echo.channel('example.channel').listen('user.notification', (e) => {
+                console.log('chanell e:', e);
+            })
+
+            window.Echo.channel('example-channel')
+                .listen('.user.notification', (e) => { // Note the `.` here
+                    console.log('Notification received:', e);
+                    alert(e.message);
+                    // Display the notification on the page
+                    const notificationDiv = document.createElement('div');
+                    notificationDiv.innerHTML = `<p>New notification: ${e.message} at ${e.timestamp}</p>`;
+                    document.getElementById('notifications').appendChild(notificationDiv);
+                });
+
+            // Echo.channel
+
+
+
+            // Assume user ID is available (e.g., from auth or prop)
+            const userSockId = "{{ auth()->user()->id ?? 1 }}";
+            // Replace with actual user ID
+
+            // Subscribe to private channel (authenticates via /broadcasting/auth)
+            // window.Echo.private(`App.Models.User.${userSockId}`)
+            //     .listen('user.notification', (e) => {
+            //         console.log('aise:', e);
+            //         // Handle the event
+            //         const notificationDiv = document.createElement('div');
+            //         notificationDiv.innerHTML = `<p>New notification: ${e.message}</p>`;
+            //         notificationDiv.style.border = '1px solid #ccc';
+            //         notificationDiv.style.padding = '10px';
+            //         notificationDiv.style.margin = '5px 0';
+            //         document.getElementById('notifications').appendChild(notificationDiv);
+
+            //         // Optional: Play sound or show toast
+            //         console.log('Notification received:', e);
+            //     });
+
+            // Handle connection
+            window.Echo.connector.pusher.connection.bind('connected', () => {
+                console.log('Connected to Reverb WebSocket');
+            });
         })
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.Echo !== 'undefined') {
+                window.Echo.channel('example.channel').listen('user.notification', (e) => {
+                    console.log('channel e:', e);
+                });
+            } else {
+                console.error('window.Echo is not defined.');
+            }
+        });
     </script>
 @endpush
