@@ -1,0 +1,84 @@
+/* Cool Toastr design overrides */
+.toast {
+    background-color: #ffffff;
+    color: #1a202c;
+    border-radius: 0.75rem;
+    /* Rounded borders */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Shadow for a "cool" look */
+}
+
+/* Toastr styles for a modern look */
+.toast-title {
+    font-weight: 600;
+    color: black;
+    padding-left: 6px;
+        
+}
+
+.toast-message {
+    font-size: 0.875rem;
+    color:black;
+    font-weight: 500;
+    padding-left: 6px;
+}
+
+/* Ensure the close button is visible on the light background */
+.toast-close-button {
+    color: #4a5568;
+    opacity: 1;
+    /* Ensure it's not transparent */
+}
+                /* Custom Icon Styling and Color Overrides */
+                /* Remove the default background icon */
+                #toast-container>div {
+                    background-image: none !important;
+                    padding-left: 2.5rem;
+                    /* Adjust padding to make space for the new icon */
+                }
+        
+                /* Define the new icons using pseudo-elements and Unicode characters */
+                .toast-success::before {
+                    content: "✔";
+                    color: #4CAF50;
+                }
+
+                .toast-success::before {
+                    content: "📢";
+                    /* Checkmark icon */
+                    color: #4CAF50;
+                    /* Green */
+                }
+        
+                .toast-info::before {
+                    content: "i";
+                    /* Information icon */
+                    color: #2196F3;
+                    /* Blue */
+                }
+        
+                .toast-warning::before {
+                    content: "!";
+                    /* Exclamation mark */
+                    color: #FFC107;
+                    /* Yellow */
+                }
+        
+                .toast-error::before {
+                    content: "✖";
+                    /* X mark */
+                    color: #F44336;
+                    /* Red */
+                }
+        
+                /* General styling for the new icons */
+                #toast-container>div::before {
+                    font-size: 1.5rem;
+                    position: absolute;
+                    left: 0.75rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-weight: bold;
+                   
+                }
+                   

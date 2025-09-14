@@ -12,22 +12,24 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
 
     <style>
-        .toast {
+        .toastp {
             transform: translateX(-100%);
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
-        .toast.show {
+        .toastp.show {
             transform: translateX(0);
         }
 
-        .toast.hide {
+        .toastp.hide {
             transform: translateX(-100%);
             opacity: 0;
         }
@@ -53,6 +55,7 @@
             cursor: not-allowed;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('asset/css/mystyle.css') }}">
 </head>
 
 <body class="font-sans antialiased">
@@ -74,12 +77,10 @@
         </main>
     </div>
     <!-- Toast Container -->
-    <div id="toast-container" class="fixed bottom-4 left-4 z-50 space-y-2"></div>
+    <div id="toastp-container" class="fixed bottom-4 left-4 z-50 space-y-2"></div>
 
     <div id="notifications"></div> <!-- Where notifications appear -->
     @stack('scripts')
-
-
 
 
 </body>

@@ -200,8 +200,8 @@
     <script>
         // Toast Functions
         function showToast(message, type = 'info', duration = 0) {
-            const container = document.getElementById('toast-container');
-            const toastId = 'toast-' + Date.now();
+            const container = document.getElementById('toastp-container');
+            const toastId = 'toastp-' + Date.now();
 
             const icons = {
                 'processing': '<i class="fa-solid fa-spinner fa-spin text-blue-600"></i>',
@@ -217,11 +217,13 @@
                 'info': 'bg-white border-blue-200 text-gray-800'
             };
 
-            const toast = document.createElement('div');
-            toast.id = toastId;
-            toast.className = `toast flex items-center p-4 rounded-lg shadow-lg border-l-4 ${colors[type]} max-w-sm`;
+            const toastp = document.createElement('div');
+            toastp.id = toastId;
 
-            toast.innerHTML = `
+            toastp.className =
+                `toastp flex items-center p-4 rounded-lg shadow-lg border-l-4 ${colors[type]} max-w-sm`;
+
+            toastp.innerHTML = `
                 <div class="flex items-center">
                     <div class="flex-shrink-0 mr-3">
                         ${icons[type]}
@@ -230,18 +232,18 @@
                         <p class="text-sm font-medium">${message}</p>
                     </div>
                     ${type !== 'processing' ? `
-                                                                                                                                    <button onclick="hideToast('${toastId}')" class="ml-2 text-gray-400 hover:text-gray-600">
-                                                                                                                                        <i class="fa-solid fa-times text-sm"></i>
-                                                                                                                                    </button>
-                                                                                                                                    ` : ''}
+                                                                                                                                                                                                                                                    <button onclick="hideToast('${toastId}')" class="ml-2 text-gray-400 hover:text-gray-600">
+                                                                                                                                                                                                                                                        <i class="fa-solid fa-times text-sm"></i>
+                                                                                                                                                                                                                                                    </button>
+                                                                                                                                                                                                                                                    ` : ''}
                 </div>
             `;
 
-            container.appendChild(toast);
+            container.appendChild(toastp);
 
             // Show toast
             setTimeout(() => {
-                toast.classList.add('show');
+                toastp.classList.add('show');
             }, 10);
 
             // Auto hide after duration (except for processing)
@@ -255,11 +257,11 @@
         }
 
         function hideToast(toastId) {
-            const toast = document.getElementById(toastId);
-            if (toast) {
-                toast.classList.add('hide');
+            const toastp = document.getElementById(toastId);
+            if (toastp) {
+                toastp.classList.add('hide');
                 setTimeout(() => {
-                    toast.remove();
+                    toastp.remove();
                 }, 300);
             }
         }
@@ -447,7 +449,8 @@
         });
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !document.getElementById('addNewsForm').classList.contains('form-disabled')) {
+            if (e.key === 'Escape' && !document.getElementById('addNewsForm').classList.contains(
+                    'form-disabled')) {
                 closeModal();
             }
         });
@@ -502,13 +505,76 @@
             window.Echo.private(`App.Models.User.${userSockId}`).listen('.user.notification', (event) => {
                 console.log('ev', event);
                 console.log('message', event.message);
-                alert(event.message);
+                //alert(event.message);
+                // window.Swal.fire({
+                //     title: 'Success!',
+                //     text: event.message,
+                //     icon: 'success',
+                //     confirmButtonText: 'OK'
+                // });
+                // window.Swal.fire({
+                //     icon: 'success',
+                //     title: event.message,
+                //     position: 'top-end', // Position the toast
+                //     showConfirmButton: true, // No confirm button
+                //     timer: 3000, // Auto-close after 3 seconds
+                //     timerProgressBar: true,
+                //     toast: true // Enable toast mode
+                // });
+                window.toastr.options = {
+                    // Position the notifications in the top-right corner, similar to SweetAlert's 'top-end'
+                    "positionClass": "toast-top-right",
+                    // Make the toast persist until the user clicks the close button
+                    "timeOut": "0",
+                    "extendedTimeOut": "0",
+                    // Enable the close button (the cross icon)
+                    "closeButton": true,
+                    // Ensure a new toast is shown on top of the old ones, creating a "stack"
+                    "newestOnTop": true,
+                    // Disable progress bar
+                    "progressBar": false,
+                    // Prevent duplicate messages from being shown
+                    "preventDuplicates": true,
+                };
+                window.toastr.success(event.message, 'Notification Alert');
 
             })
 
             window.Echo.channel('public-notification').listen('.public.notification', (event) => {
                 console.log('soc event', event);
-                alert(event.message);
+                //alert(event.message);
+                // window.Swal.fire({
+                //     title: 'Success!',
+                //     text: event.message,
+                //     icon: 'success',
+                //     confirmButtonText: 'OK'
+                // });
+                // window.Swal.fire({
+                //     icon: 'success',
+                //     title: event.message,
+                //     position: 'top-end', // Position the toast
+                //     showConfirmButton: true, // No confirm button
+                //     timer: 3000, // Auto-close after 3 seconds
+                //     timerProgressBar: true,
+                //     toast: true // Enable toast mode
+                // });
+
+                window.toastr.options = {
+                    // Position the notifications in the top-right corner, similar to SweetAlert's 'top-end'
+                    "positionClass": "toast-top-right",
+                    // Make the toast persist until the user clicks the close button
+                    "timeOut": "0",
+                    "extendedTimeOut": "0",
+                    // Enable the close button (the cross icon)
+                    "closeButton": true,
+                    // Ensure a new toast is shown on top of the old ones, creating a "stack"
+                    "newestOnTop": true,
+                    // Disable progress bar
+                    "progressBar": false,
+                    // Prevent duplicate messages from being shown
+                    "preventDuplicates": true,
+                };
+                window.toastr.success(event.message, 'Notification Alert');
             })
 
         })
