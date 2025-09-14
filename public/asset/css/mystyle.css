@@ -1,6 +1,7 @@
 /* Cool Toastr design overrides */
 .toast {
     background-color: #ffffff;
+    opacity: 1;
     color: #1a202c;
     border-radius: 0.75rem;
     /* Rounded borders */
@@ -12,7 +13,7 @@
 .toast-title {
     font-weight: 600;
     color: black;
-    padding-left: 6px;
+    padding-left: 10px;
         
 }
 
@@ -20,7 +21,7 @@
     font-size: 0.875rem;
     color:black;
     font-weight: 500;
-    padding-left: 6px;
+    padding-left: 10px;
 }
 
 /* Ensure the close button is visible on the light background */
