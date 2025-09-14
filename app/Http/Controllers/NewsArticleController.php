@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PublicNotification;
 use App\Models\NewsArticle;
 use Illuminate\Http\Request;
 use App\Services\ElasticsearchService;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use App\Events\UserNotification;
+use Illuminate\Support\Facades\Auth;
 
 class NewsArticleController extends Controller
 {
@@ -73,7 +75,11 @@ class NewsArticleController extends Controller
                 'message' => 'News Saved successfully'
             ];
 
-            broadcast(new UserNotification('News Article Created', $request->user()->id))->toOthers();
+            $broadcastRelayedBy = Auth::user()->name;
+
+            broadcast(new UserNotification('News Article Created', $request->user()->id));
+
+            broadcast(new PublicNotification($broadcastRelayedBy . ' created a news article'));
 
             return response()->json(['data' => $data], 200);
 

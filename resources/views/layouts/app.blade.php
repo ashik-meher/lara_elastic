@@ -15,6 +15,8 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
+
     <style>
         .toast {
             transform: translateX(-100%);
@@ -74,34 +76,9 @@
     <!-- Toast Container -->
     <div id="toast-container" class="fixed bottom-4 left-4 z-50 space-y-2"></div>
 
-    <script>
-        // Assume user ID is available (e.g., from auth or prop)
-        const userId = "{{ auth()->id() ?? 1 }}";
-        // Replace with actual user ID
-
-        // Subscribe to private channel (authenticates via /broadcasting/auth)
-        window.Echo.private(`App.Models.User.${userId}`)
-            .listen('user.notification', (e) => {
-                // Handle the event
-                const notificationDiv = document.createElement('div');
-                notificationDiv.innerHTML = `<p>New notification: ${e.message}</p>`;
-                notificationDiv.style.border = '1px solid #ccc';
-                notificationDiv.style.padding = '10px';
-                notificationDiv.style.margin = '5px 0';
-                document.getElementById('notifications').appendChild(notificationDiv);
-
-                // Optional: Play sound or show toast
-                console.log('Notification received:', e);
-            });
-
-        // Handle connection
-        window.Echo.connector.pusher.connection.bind('connected', () => {
-            console.log('Connected to Reverb WebSocket');
-        });
-    </script>
-
-    @stack('scripts')
     <div id="notifications"></div> <!-- Where notifications appear -->
+    @stack('scripts')
+
 
 
 

@@ -10,19 +10,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserNotification implements ShouldBroadcast
+class PublicNotification implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $userId;
     public $message;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(string $message, int $userId)
+    public function __construct($message)
     {
-        $this->userId = $userId;
         $this->message = $message;
     }
 
@@ -31,22 +29,16 @@ class UserNotification implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): Channel
+    public function broadcastOn(): array
     {
-
-        return new PrivateChannel('App.Models.User.' . $this->userId);
-        // User-specific channels
-        // return [
-        //     new PrivateChannel('App.Models.User.' . $this->userId),
-        // ];
-        // return [
-        //     new PrivateChannel('channel-name'),
-        // ];
+        return [
+            new Channel('public-notification'),
+        ];
     }
 
     public function broadcastAs(): string
     {
-        return 'user.notification';
+        return 'public.notification';
     }
 
     public function broadcastWith(): array

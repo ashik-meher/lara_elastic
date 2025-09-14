@@ -230,10 +230,10 @@
                         <p class="text-sm font-medium">${message}</p>
                     </div>
                     ${type !== 'processing' ? `
-                                                                                            <button onclick="hideToast('${toastId}')" class="ml-2 text-gray-400 hover:text-gray-600">
-                                                                                                <i class="fa-solid fa-times text-sm"></i>
-                                                                                            </button>
-                                                                                            ` : ''}
+                                                                                                                                    <button onclick="hideToast('${toastId}')" class="ml-2 text-gray-400 hover:text-gray-600">
+                                                                                                                                        <i class="fa-solid fa-times text-sm"></i>
+                                                                                                                                    </button>
+                                                                                                                                    ` : ''}
                 </div>
             `;
 
@@ -495,9 +495,21 @@
         updateCharCount();
     </script>
 
-    <script type="module">
+    <script>
         $(document).ready(function(e) {
             console.log('doc ready');
+            var userSockId = "{{ auth()->user()->id }}";
+            window.Echo.private(`App.Models.User.${userSockId}`).listen('.user.notification', (event) => {
+                console.log('ev', event);
+                console.log('message', event.message);
+                alert(event.message);
+
+            })
+
+            window.Echo.channel('public-notification').listen('.public.notification', (event) => {
+                console.log('soc event', event);
+                alert(event.message);
+            })
 
         })
     </script>
