@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2025 at 09:05 AM
+-- Generation Time: Sep 25, 2025 at 05:12 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -60,6 +60,13 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `failed_jobs`
+--
+
+INSERT INTO `failed_jobs` (`id`, `uuid`, `connection`, `queue`, `payload`, `exception`, `failed_at`) VALUES
+(1, '778a6f22-edc0-4818-bb02-c8c869ffbd60', 'database', 'default', '{\"uuid\":\"778a6f22-edc0-4818-bb02-c8c869ffbd60\",\"displayName\":\"App\\\\Events\\\\UserNotification\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"Illuminate\\\\Broadcasting\\\\BroadcastEvent\",\"command\":\"O:38:\\\"Illuminate\\\\Broadcasting\\\\BroadcastEvent\\\":15:{s:5:\\\"event\\\";O:27:\\\"App\\\\Events\\\\UserNotification\\\":2:{s:6:\\\"userId\\\";i:1;s:7:\\\"message\\\";s:20:\\\"News Article Created\\\";}s:5:\\\"tries\\\";N;s:7:\\\"timeout\\\";N;s:7:\\\"backoff\\\";N;s:13:\\\"maxExceptions\\\";N;s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";N;s:12:\\\"messageGroup\\\";N;s:5:\\\"delay\\\";N;s:11:\\\"afterCommit\\\";N;s:10:\\\"middleware\\\";a:0:{}s:7:\\\"chained\\\";a:0:{}s:15:\\\"chainConnection\\\";N;s:10:\\\"chainQueue\\\";N;s:19:\\\"chainCatchCallbacks\\\";N;}\"},\"createdAt\":1757819667,\"delay\":null}', 'Illuminate\\Broadcasting\\BroadcastException: Pusher error: cURL error 7: Failed to connect to 127.0.0.1 port 8080 after 2043 ms: Couldn\'t connect to server (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://127.0.0.1:8080/apps/62722/events?auth_key=29892h29d9sgg8282hsss&auth_timestamp=1757819695&auth_version=1.0&body_md5=45c4460bcb26e1460de1a683e375e70b&auth_signature=52acb40708b20fb61be87c52169c9d3d52f7bb8638ba832aac40df6b57a2fc7c. in D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Broadcasting\\Broadcasters\\PusherBroadcaster.php:163\nStack trace:\n#0 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Broadcasting\\BroadcastEvent.php(93): Illuminate\\Broadcasting\\Broadcasters\\PusherBroadcaster->broadcast(Object(Illuminate\\Support\\Collection), \'user.notificati...\', Array)\n#1 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Broadcasting\\BroadcastEvent->handle(Object(Illuminate\\Broadcasting\\BroadcastManager))\n#2 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#4 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#5 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(836): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#6 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(132): Illuminate\\Container\\Container->call(Array)\n#7 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(Illuminate\\Broadcasting\\BroadcastEvent))\n#8 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Broadcasting\\BroadcastEvent))\n#9 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(136): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#10 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(134): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(Illuminate\\Broadcasting\\BroadcastEvent), false)\n#11 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(Illuminate\\Broadcasting\\BroadcastEvent))\n#12 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Broadcasting\\BroadcastEvent))\n#13 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(127): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#14 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(68): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Broadcasting\\BroadcastEvent))\n#15 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(102): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#16 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(444): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(394): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#18 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(180): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#19 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->daemon(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#20 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#21 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#24 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#25 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(836): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#26 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)\n#27 D:\\Server8088\\htdocs\\elastic\\vendor\\symfony\\console\\Command\\Command.php(318): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#28 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#29 D:\\Server8088\\htdocs\\elastic\\vendor\\symfony\\console\\Application.php(1110): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#30 D:\\Server8088\\htdocs\\elastic\\vendor\\symfony\\console\\Application.php(359): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#31 D:\\Server8088\\htdocs\\elastic\\vendor\\symfony\\console\\Application.php(194): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#32 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#33 D:\\Server8088\\htdocs\\elastic\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#34 D:\\Server8088\\htdocs\\elastic\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))\n#35 {main}', '2025-09-13 21:14:58');
 
 -- --------------------------------------------------------
 
@@ -182,7 +189,68 @@ INSERT INTO `news_articles` (`id`, `created_at`, `updated_at`, `title`, `body`, 
 (44, '2025-09-10 21:27:45', '2025-09-10 21:27:45', 'Ducsu election results: Winners declared for all 28 posts', 'In the Dhaka University Central Students\' Union (Ducsu) election, 471 candidates contested 28 posts. The election commission announced the final results today, around 8:00am at the Dhaka University Senate building.\r\n\r\nShadik Kayem was elected vice-president, leading a panel that secured key positions across the union.\r\n\r\nSM Farhad Hossain won the post of general secretary with 10,794 votes, while Muhammad Mohiuddin Khan was elected assistant general secretary, receiving 11,772 votes.', 'Ashik'),
 (45, '2025-09-10 22:34:53', '2025-09-10 22:34:53', 'Bangladeshi family assaulted, looted; envoy’s car vandalised in Nepal', 'A Bangladeshi family fell victim to assault and looting amid the chaotic situation in Nepal on Tuesday when protesters vandalised a five-star hotel in Kathmandu.\r\n\r\nThe Bangladesh ambassador\'s car was also vandalised when he was on his way to provide support for the Bangladesh football team now in Nepal, officials of Bangladesh Embassy in Kathmandu confirmed to The Daily Star last night.\r\n\r\nThe assaulted Bangladeshi family was later sheltered at the ambassador\'s residence yesterday.', 'Ashik'),
 (46, '2025-09-10 22:36:10', '2025-09-10 22:36:10', 'Starlink in Gaza: Humanitarian Lifeline or Military Asset?', 'Starlink, the satellite internet project under Musk\'s SpaceX, began with the lofty ambition of blanketing the globe with high-speed internet. What started as a futuristic experiment quickly turned into a sprawling constellation of thousands of satellites, reshaping digital access in remote and conflict-stricken regions. Its role in Ukraine after Russia\'s 2022 invasion catapulted Starlink into global headlines. Musk\'s satellites kept Ukrainian forces connected when terrestrial systems failed, reinforcing its image as both a humanitarian and strategic tool. Since then, Starlink has become synonymous with resilience in crises—but also increasingly entangled in the politics of war.', 'Ashik'),
-(47, '2025-09-10 22:42:16', '2025-09-10 22:42:16', 'Voting begins in Jucsu polls after 33 years', 'Voting in the Jahangirnagar University Central Students’ Union (Jucsu) election began at 9am on Thursday, marking the return of the long-awaited polls after a 33-year gap.\r\n\r\nLong queues of students were seen outside polling booths at various halls from early morning. The polls will continue until 5pm across the university’s 21 residential halls.\r\n\r\nOn-site visits showed voters—particularly female students—turning out in notable numbers. The university administration said the atmosphere has remained peaceful, with security measures in place to avert any untoward incidents.', 'Ashik');
+(47, '2025-09-10 22:42:16', '2025-09-10 22:42:16', 'Voting begins in Jucsu polls after 33 years', 'Voting in the Jahangirnagar University Central Students’ Union (Jucsu) election began at 9am on Thursday, marking the return of the long-awaited polls after a 33-year gap.\r\n\r\nLong queues of students were seen outside polling booths at various halls from early morning. The polls will continue until 5pm across the university’s 21 residential halls.\r\n\r\nOn-site visits showed voters—particularly female students—turning out in notable numbers. The university administration said the atmosphere has remained peaceful, with security measures in place to avert any untoward incidents.', 'Ashik'),
+(48, '2025-09-13 21:14:24', '2025-09-13 21:14:24', 'weess', 'asddss', 'Ashik'),
+(49, '2025-09-13 21:15:48', '2025-09-13 21:15:48', 'xssss', 'assasaas', 'Ashik'),
+(50, '2025-09-13 21:20:20', '2025-09-13 21:20:20', 'sddsd', 'cxzczcx', 'Ashik'),
+(51, '2025-09-13 21:50:49', '2025-09-13 21:50:49', 'sddsfdsf', 'dfssdfdfs', 'Ashik'),
+(52, '2025-09-13 21:55:02', '2025-09-13 21:55:02', 'dasdasdas', 'dasasddassd', 'Ashik'),
+(53, '2025-09-13 21:55:43', '2025-09-13 21:55:43', 'sasdasa', 'sdaasdasd', 'Ashik'),
+(54, '2025-09-13 22:08:20', '2025-09-13 22:08:20', 'dsfsdffsd', 'fdsdsfds', 'Ashik'),
+(55, '2025-09-13 22:08:56', '2025-09-13 22:08:56', 'cdasdd', 'cscascaafsda', 'Ashik'),
+(56, '2025-09-13 22:12:23', '2025-09-13 22:12:23', 'fdfdsfds', 'saasdfasdf', 'Ashik'),
+(57, '2025-09-13 22:12:52', '2025-09-13 22:12:52', 'sassa', 'sssa', 'Ashik'),
+(58, '2025-09-13 22:13:46', '2025-09-13 22:13:46', 'zxxz', 'xzxzxz', 'Ashik'),
+(59, '2025-09-13 22:14:30', '2025-09-13 22:14:30', 'xsxx', 'xzzXzX', 'Ashik'),
+(60, '2025-09-13 22:19:38', '2025-09-13 22:19:38', 'xdasddss', 'dasdsdsadas', 'Ashik'),
+(61, '2025-09-13 22:19:50', '2025-09-13 22:19:50', 'sdadsa', 'cccx', 'Ashik'),
+(62, '2025-09-13 22:20:48', '2025-09-13 22:20:48', 'dsdasdsa', 'dsaasdasd', 'Ashik'),
+(63, '2025-09-13 23:33:41', '2025-09-13 23:33:41', 'Govt belt-tightening saved Tk 5,689cr in FY25', 'The government cut its expenditure by 25 percent, or Tk 5,689 crore, in the fiscal year (FY) 2024-25 as part of a series of austerity measures.\r\n\r\nThis is more than twice the Tk 2,500 crore saved a year earlier.\r\n\r\nIn the last fiscal year, the development and non-development budget allocations for energy, buildings, vehicles and land acquisition totalled Tk 22,756 crore, but actual spending stood at Tk 17,067 crore.\r\n\r\nTo steer through the economic turbulence caused by the Covid-19 pandemic in March 2020, the authorities introduced the first round of belt-tightening.', 'Ashik'),
+(64, '2025-09-13 23:35:40', '2025-09-13 23:35:40', 'assaas', 'aSAA', 'Ashik'),
+(65, '2025-09-13 23:37:42', '2025-09-13 23:37:42', 'ASSASD', 'SASASAD', 'Ashik'),
+(66, '2025-09-13 23:38:32', '2025-09-13 23:38:32', 'DSFSDFDS', 'SDASAfdfds affasd', 'Ashik'),
+(67, '2025-09-13 23:41:51', '2025-09-13 23:41:51', 'dsadasdascaf', 'cxcxzcacas', 'Ashik'),
+(68, '2025-09-13 23:42:47', '2025-09-13 23:42:47', 'dadfsadsfasdf', 'dsaasfdasfasfd', 'Ashik'),
+(69, '2025-09-13 23:43:23', '2025-09-13 23:43:23', 'dasafsdfasdfasd', 'afcddfasfasdasfd', 'Ashik'),
+(70, '2025-09-13 23:44:18', '2025-09-13 23:44:18', 'dasasdasddas', 'fsdsdsfd', 'Ashik'),
+(71, '2025-09-13 23:44:29', '2025-09-13 23:44:29', 'dddsf', 'sddsdsef', 'Ashik'),
+(72, '2025-09-13 23:54:00', '2025-09-13 23:54:00', 'fsdsdds', 'dsadadsasd', 'Ashik'),
+(73, '2025-09-13 23:54:43', '2025-09-13 23:54:43', 'sasa', 'saxssx', 'Ashik'),
+(74, '2025-09-13 23:55:42', '2025-09-13 23:55:42', 'zcxczx', 'xcZcxz', 'Ashik'),
+(75, '2025-09-14 00:30:02', '2025-09-14 00:30:02', 'cvcds', 'dsdsds', 'Ashik'),
+(76, '2025-09-14 00:31:38', '2025-09-14 00:31:38', 'ddsfsdf', 'dssdfsds', 'Ashik'),
+(77, '2025-09-14 00:32:39', '2025-09-14 00:32:39', 'cvcvxvcx', 'vcvcffsd', 'Ashik'),
+(78, '2025-09-14 00:32:51', '2025-09-14 00:32:51', 'fsdff', 'fsdfsdsdfdf', 'Ashik'),
+(79, '2025-09-14 00:34:11', '2025-09-14 00:34:11', 'sasda', 'sdadsasda', 'Ashik'),
+(80, '2025-09-14 00:35:01', '2025-09-14 00:35:01', 'fdfsdf', 'dssfdsfd', 'Ashik'),
+(81, '2025-09-14 00:58:30', '2025-09-14 00:58:30', 'asaasas', 'asxZXZ', 'Ashik'),
+(82, '2025-09-14 01:12:26', '2025-09-14 01:12:26', 'dfsdfsdfs', 'fdsfddfs', 'Ashik'),
+(83, '2025-09-14 02:20:50', '2025-09-14 02:20:50', 'sdasd', 'dsadasasd', 'Ashik'),
+(84, '2025-09-14 02:21:12', '2025-09-14 02:21:12', 'dasddas', 'asssdasd', 'Ashik'),
+(85, '2025-09-14 02:35:45', '2025-09-14 02:35:45', 'dsdsdfs', 'fdfsdfsdsdf', 'Ashik'),
+(86, '2025-09-14 02:36:14', '2025-09-14 02:36:14', 'cvxvxv', 'fdzzddvz', 'Ashik'),
+(87, '2025-09-14 02:36:30', '2025-09-14 02:36:30', 'sadass', 'sdadasdasa', 'Ashik'),
+(88, '2025-09-14 02:37:38', '2025-09-14 02:37:38', 'dfdssfd', 'dfssdsdffsd', 'Ashik'),
+(89, '2025-09-14 02:41:20', '2025-09-14 02:41:20', 'zsd', 'saasdsad', 'Ashik'),
+(90, '2025-09-14 02:46:32', '2025-09-14 02:46:32', 'dfdffdgh', 'fgfdsfsdfds', 'Ashik'),
+(91, '2025-09-14 02:49:03', '2025-09-14 02:49:03', 'sdsf', 'dfsdsdsf', 'Ashik'),
+(92, '2025-09-14 02:51:14', '2025-09-14 02:51:14', 'dfdssdffds', 'fdsfgcvx ewfewerrwe', 'Ashik'),
+(93, '2025-09-14 02:58:00', '2025-09-14 02:58:00', 'srgrfgf', 'fdssfdsfdsfdsfd', 'Ashik'),
+(94, '2025-09-14 02:59:34', '2025-09-14 02:59:34', 'sxsas', 'sssx', 'Ashik'),
+(95, '2025-09-14 03:03:47', '2025-09-14 03:03:47', 'asdasdfdfa', 'dasdasasdf', 'Ashik'),
+(96, '2025-09-14 03:04:19', '2025-09-14 03:04:19', 'saddasads', 'sddsaasd', 'Ashik'),
+(97, '2025-09-14 03:05:41', '2025-09-14 03:05:41', 'dsfdffd', 'dssdadsasd', 'Ashik'),
+(98, '2025-09-14 03:07:41', '2025-09-14 03:07:41', 'dfssfd', 'fdfdsfddfsfsd', 'Ashik'),
+(99, '2025-09-14 03:08:19', '2025-09-14 03:08:19', 'cddd', 'dadadadaf', 'Ashik'),
+(100, '2025-09-14 03:09:08', '2025-09-14 03:09:08', 'dsads', 'dssadsadsad', 'Ashik'),
+(101, '2025-09-14 03:09:56', '2025-09-14 03:09:56', 'azaA', 'AaaAAaAA', 'Ashik'),
+(102, '2025-09-14 03:12:52', '2025-09-14 03:12:52', 'sadadsadas', 'sdassasas efefewf', 'Ashik'),
+(103, '2025-09-14 03:14:09', '2025-09-14 03:14:09', 'v xxfv', 'fffsew', 'Ashik'),
+(104, '2025-09-14 03:20:39', '2025-09-14 03:20:39', 'fdssfsfd', 'fdsfsd', 'Ashik'),
+(105, '2025-09-14 03:21:35', '2025-09-14 03:21:35', 'fddfgd', 'gffggffggd', 'Ashik'),
+(106, '2025-09-14 23:28:36', '2025-09-14 23:28:36', 'ggdf', 'gfdfgdf', 'Ashik'),
+(107, '2025-09-14 23:29:59', '2025-09-14 23:29:59', 'fdfd', 'ffdfdfvv', 'Ashik'),
+(108, '2025-09-14 23:30:30', '2025-09-14 23:30:30', 'fdfd', 'ffdfdfvv', 'Ashik');
 
 -- --------------------------------------------------------
 
@@ -216,7 +284,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('1nUCqcdofLnXNLmgEIXguMUJZ0qVKtfRPpQtVQQs', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiYmhSdjA4aXV3NkJTYlVLdlVhWExpYmVxQndXczVteERSbzA4dzlVWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9uZXdzLWFydGljbGVzL3NlYXJjaCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1757574072);
+('gFiEvNQEDNhFj2cD1lIqduaxjNP0pPw8zusaPyIw', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibTRnazVMVHduUnZVZ2dyVzZMNjJRckl3NlQ2UTVST1c3Ynp2ZWdUayI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9uZXdzLWFydGljbGVzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1757914236);
 
 -- --------------------------------------------------------
 
@@ -240,7 +308,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ashik Mobin Mobin', 'ashikmehermobin@gmail.com', NULL, '$2y$12$MnrOuir0J6E7wY4AdiFWGO/JlvTBn6.0qHibqwfZLmdd161pTFs2e', NULL, '2025-09-07 22:36:53', '2025-09-07 22:36:53');
+(1, 'Ashik Mobin Mobin', 'ashikmehermobin@gmail.com', NULL, '$2y$12$MnrOuir0J6E7wY4AdiFWGO/JlvTBn6.0qHibqwfZLmdd161pTFs2e', NULL, '2025-09-07 22:36:53', '2025-09-07 22:36:53'),
+(2, 'AM Mubeen', 'ashikmeherpial@gmail.com', NULL, '$2y$12$s/7PeujsZeJgSGk2tbTb4O2ODaB70.gW5vhDfh/vFRPmFb96NgHaq', NULL, '2025-09-13 21:54:45', '2025-09-13 21:54:45');
 
 --
 -- Indexes for dumped tables
@@ -319,13 +388,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -337,13 +406,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `news_articles`
 --
 ALTER TABLE `news_articles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
